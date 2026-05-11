@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/chat")
-@CrossOrigin(origins = "*") // Permite que el frontend NPM se conecte
+@CrossOrigin(origins = "*") // permite conexion desde cualquier origen (frontend)
 public class BffController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class BffController {
     public DashboardDTO getDashboard() {
         DashboardDTO dashboard = new DashboardDTO();
         
-        // Orquestación: Llama a ambos microservicios
+        // llama a ambos microservicios (orquestacion)
         try {
             Object user = restTemplate.getForObject(
             "http://localhost:8081/users/1", Object.class);

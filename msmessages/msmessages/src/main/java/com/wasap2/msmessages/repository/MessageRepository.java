@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-    // Aquí implementas el Patrón Repository solicitado en la rúbrica
+    // patron repository para acceder a la base de datos de mensajes
 }

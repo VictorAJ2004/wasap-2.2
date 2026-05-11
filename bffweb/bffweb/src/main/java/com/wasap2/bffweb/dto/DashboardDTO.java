@@ -5,6 +5,6 @@ import java.util.List;
 
 @Data
 public class DashboardDTO {
-    private Object userProfile; // Datos de msuser
-    private List<Object> recentMessages; // Datos de msmessages
+    private Object userProfile; 
+    private List<Object> recentMessages; 
 }

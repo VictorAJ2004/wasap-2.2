@@ -4,12 +4,12 @@ const cargarDatos = async () => {
     const statusElement = document.getElementById('status-p');
     
     try {
-        // Llamada al BFF en el puerto 8080
+        // llama al bff en el puerto 8080
         const res = await axios.get('http://localhost:8080/api/v1/chat/dashboard');
         
         console.log("Datos unificados del BFF:", res.data);
 
-        // Si la conexión es exitosa, actualizamos el mensaje en la web
+        // si se conecta con exito, se muestra un mensaje de éxito al usuario
         if (statusElement) {
             statusElement.innerText = "¡Conexión con el BFF establecida correctamente!";
             statusElement.className = "success";
@@ -18,7 +18,7 @@ const cargarDatos = async () => {
     } catch (error) {
         console.error("Error conectando al BFF", error);
         
-        // Si hay un error, informamos al usuario
+        // si hay un error, se muestra un mensaje de error al usuario
         if (statusElement) {
             statusElement.innerText = "Error: No se pudo conectar con el servidor.";
             statusElement.className = "error";
