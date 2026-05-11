@@ -1,0 +1,11 @@
+# Ignorar archivos de compilación de Java
+**/target/
+**.class
+
+# Ignorar archivos de configuración de IDE
+.idea/
+.vscode/
+*.iml
+
+# Ignorar dependencias de Node
+**/node_modules/
