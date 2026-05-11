@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Wasap 2.2 - Microservicios</title>
+    <style>
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+    </style>
 </head>
 <body>
     <div id="app">
         <h1>Chat Room - Evaluacion 2</h1>
+        <p id="status-p">Cargando conexión...</p>
+        
         <div id="messages-container"></div>
         <input type="text" id="message-input" placeholder="Escribe un mensaje...">
         <button id="send-btn">Enviar</button>

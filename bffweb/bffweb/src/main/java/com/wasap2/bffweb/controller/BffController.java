@@ -1,0 +1,46 @@
+package com.wasap2.bffweb.controller;
+
+import com.wasap2.bffweb.dto.DashboardDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/chat")
+@CrossOrigin(origins = "*") // Permite que el frontend NPM se conecte
+public class BffController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @GetMapping("/dashboard")
+    public DashboardDTO getDashboard() {
+        DashboardDTO dashboard = new DashboardDTO();
+        
+        // Orquestación: Llama a ambos microservicios
+        try {
+            Object user = restTemplate.getForObject(
+            "http://localhost:8081/users/1", Object.class);
+            dashboard.setUserProfile(user);
+        } catch (Exception e) {
+            dashboard.setUserProfile("Usuario no disponible");
+        }
+
+        try {
+            List<Object> messages = restTemplate.exchange(
+                "http://localhost:8082/messages",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Object>>() {}
+            ).getBody();
+            dashboard.setRecentMessages(messages);
+        } catch (Exception e) {
+            dashboard.setRecentMessages(null);
+        }
+
+        return dashboard;
+    }
+}
