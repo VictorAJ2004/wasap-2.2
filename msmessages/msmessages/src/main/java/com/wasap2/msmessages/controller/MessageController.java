@@ -22,4 +22,10 @@ public class MessageController {
     public List<Message> getAll() {
         return repository.findAll();
     }
+
+    @PostMapping
+    public Message createMessage(@RequestBody Message message) {
+        message.setTimestamp(java.time.LocalDateTime.now());
+        return repository.save(message);
+}
 }

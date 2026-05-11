@@ -43,4 +43,14 @@ public class BffController {
 
         return dashboard;
     }
+
+    @PostMapping("/send")
+    public Object sendMessage(@RequestBody Object messageData) {
+        try {
+            // reenvia el mensaje al microservicio de mensajes (orquestacion)
+            return restTemplate.postForObject("http://localhost:8082/messages", messageData, Object.class);
+        } catch (Exception e) {
+            return "Error al enviar mensaje a través del BFF";
+        }
+    }
 }

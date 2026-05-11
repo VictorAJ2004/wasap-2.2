@@ -26,4 +26,26 @@ const cargarDatos = async () => {
     }
 };
 
+const enviarMensaje = async () => {
+    const input = document.getElementById('message-input');
+    const texto = input.value;
+
+    if (!texto) return;
+
+    try {
+        await axios.post('http://localhost:8080/api/v1/chat/send', {
+            userId: 1, // id de usuario (pruebas)
+            text: texto
+        });
+        
+        input.value = ''; 
+        alert("Mensaje enviado y guardado en la DB");
+        location.reload(); 
+    } catch (error) {
+        console.error("Error al enviar", error);
+    }
+};
+
+document.getElementById('send-btn').addEventListener('click', enviarMensaje);
+
 cargarDatos();
